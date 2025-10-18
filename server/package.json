@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.21",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "framer-motion": "^12.23.24",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.546.0",
+    "mongoose": "^8.19.1",
+    "nodemailer": "^6.9.16",
+    "nodemon": "^3.1.10",
+    "postcss": "^8.5.6",
+    "react-hot-toast": "^2.6.0",
+    "tailwindcss": "^4.1.14"
+  }
+}
