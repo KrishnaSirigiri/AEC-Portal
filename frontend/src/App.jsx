@@ -14,6 +14,7 @@ import Companies from "./pages/Companies";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
+import CareerResources from "./pages/CareerResources";
 import AuthProvider from "./context/AuthContext";
 import ThemeProvider from "./context/ThemeContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -30,15 +31,17 @@ const App = () => {
             <Route element={<MainLayout />}> 
               <Route path="/" element={<Home />} />
               <Route path="/jobs" element={<JobList />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
               <Route path="/companies" element={<Companies />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />
+
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
               <Route path="/notifications" element={<ProtectedRoute><NotificationPanel /></ProtectedRoute>} />
               <Route path="/admin-dashboard/analytics" element={<ProtectedRoute allowedRole="Admin"><DashboardAnalytics /></ProtectedRoute>} />
               <Route path="/jobs/:id" element={<JobDetailsPage />} />
+                <Route path="/career-resources" element={<CareerResources />} />
               <Route path="/jobs/:id/apply" element={<ProtectedRoute><JobApplicationPage /></ProtectedRoute>} />
               <Route path="/application-success" element={<ProtectedRoute><ApplicationSuccessPage /></ProtectedRoute>} />
 

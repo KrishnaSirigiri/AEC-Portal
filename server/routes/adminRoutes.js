@@ -22,3 +22,5 @@ router.get("/applications", protect(["admin"]), adminOnly, getAllApplications);
 export default router;
 
 
+
+

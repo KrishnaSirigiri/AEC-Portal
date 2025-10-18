@@ -50,3 +50,5 @@ export const getAllApplications = async (req, res) => {
 };
 
 
+
+

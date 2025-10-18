@@ -3,16 +3,16 @@ import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-white py-10">
+    <footer className="bg-[#071026] text-gray-200 py-12">
       <div className="max-w-7xl mx-auto px-4">
         {/* Top section with logo and description */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           <div className="col-span-1">
             <Link to="/" className="flex items-center mb-4">
               <span className="text-xl font-bold text-white">AEC</span>
               <span className="text-xl font-bold text-accent">Datadflo</span>
             </Link>
-            <p className="text-sm text-gray-300 mb-4">
+            <p className="text-sm text-gray-300 mb-4 leading-relaxed">
               Connecting top talent with leading companies in the Architecture,
               Engineering, and Construction industry.
             </p>
@@ -36,21 +36,21 @@ const Footer = () => {
           <div className="col-span-1">
             <h3 className="text-sm font-semibold uppercase mb-4">QUICK LINKS</h3>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li>
-                <Link to="/jobs" className="hover:text-accent transition-colors">Browse Jobs</Link>
-              </li>
-              <li>
-                <Link to="/companies" className="hover:text-accent transition-colors">Companies</Link>
-              </li>
-              <li>
-                <Link to="/about" className="hover:text-accent transition-colors">About Us</Link>
-              </li>
-              <li>
-                <Link to="/contact" className="hover:text-accent transition-colors">Contact</Link>
-              </li>
-              <li>
-                <Link to="/privacy" className="hover:text-accent transition-colors">Privacy Policy</Link>
-              </li>
+                <li>
+                  <Link to="/jobs" className="hover:text-accent transition-colors">Browse Jobs</Link>
+                </li>
+                <li>
+                  <Link to="/companies" className="hover:text-accent transition-colors">Companies</Link>
+                </li>
+                <li>
+                  <Link to="/about" className="hover:text-accent transition-colors">About Us</Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="hover:text-accent transition-colors">Contact</Link>
+                </li>
+                <li>
+                  <Link to="/privacy" className="hover:text-accent transition-colors">Privacy Policy</Link>
+                </li>
             </ul>
           </div>
 
@@ -59,16 +59,16 @@ const Footer = () => {
             <h3 className="text-sm font-semibold uppercase mb-4">FOR JOB SEEKERS</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
-                <Link to="/create-account" className="hover:text-accent transition-colors">Create Account</Link>
+                <Link to="/register" className="hover:text-accent transition-colors">Create Account</Link>
               </li>
               <li>
                 <Link to="/jobseeker-dashboard" className="hover:text-accent transition-colors">Job Seeker Dashboard</Link>
               </li>
               <li>
-                <Link to="/search-jobs" className="hover:text-accent transition-colors">Search Jobs</Link>
+                <Link to="/jobs?search=true" className="hover:text-accent transition-colors">Search Jobs</Link>
               </li>
               <li>
-                <Link to="/resources" className="hover:text-accent transition-colors">Career Resources</Link>
+                <Link to="/career-resources" className="hover:text-accent transition-colors">Career Resources</Link>
               </li>
             </ul>
           </div>
@@ -90,7 +90,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom section with copyright */}
-        <div className="pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+        <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <p>© 2025 AEC Job Portal. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/terms" className="hover:text-accent transition-colors">Terms of Service</Link>
@@ -105,3 +105,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+

@@ -8,49 +8,52 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user } = useAuth() || {};
 
-  return (
-    <nav className="bg-white dark:bg-primary sticky top-0 z-50 shadow-sm dark:shadow-accent/10 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="flex items-center">
-          <span className="text-xl font-bold text-primary dark:text-white">AEC</span>
-          <span className="text-xl font-bold text-accent">Datadflo</span>
-        </Link>
+  const dashboardPath = user?.role && user.role.toLowerCase() === "recruiter"
+    ? "/recruiter-dashboard"
+    : "/jobseeker-dashboard";
 
-        <div className="hidden md:flex gap-6 items-center">
-          <div className="relative">
+  return (
+    <nav className="bg-[#071026] sticky top-0 z-50 shadow-sm transition-colors duration-200">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-6">
+          <Link to="/" className="flex items-center">
+            <span className="text-xl font-bold text-white">AEC</span>
+            <span className="text-xl font-bold text-accent ml-2">Datadflo</span>
+          </Link>
+          <Link to="/" className="text-sm text-gray-200 bg-[#0e2540] px-3 py-2 rounded-md">Home</Link>
+        </div>
+
+        <div className="hidden md:flex flex-1 justify-center px-4">
+          <div className="w-2/5 relative">
             <input
               type="text"
               placeholder="Search jobs..."
-              className="py-2 pl-8 pr-4 rounded-md bg-gray-100 dark:bg-primary-light text-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-accent w-48 transition-all duration-200"
+              className="w-full py-2 pl-10 pr-4 rounded-md bg-[#0b2036] text-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-accent transition-all duration-200"
             />
-            <div className="absolute left-2 top-2.5 text-gray-400">
-              <Search className="h-4 w-4" />
+            <div className="absolute left-3 top-2.5 text-gray-400">
+              <Search className="h-4 w-4 text-gray-300" />
             </div>
           </div>
-          
-          <Link to="/" className="text-gray-700 dark:text-gray-200 hover:text-accent dark:hover:text-accent transition-colors">Home</Link>
-          <Link to="/jobs" className="text-gray-700 dark:text-gray-200 hover:text-accent dark:hover:text-accent transition-colors">Jobs</Link>
-          <Link to="/companies" className="text-gray-700 dark:text-gray-200 hover:text-accent dark:hover:text-accent transition-colors">Companies</Link>
-          
-          <ThemeToggle />
-          
+        </div>
+
+        <div className="hidden md:flex items-center gap-4">
           {user ? (
             <>
-              <Link to="/notifications" className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-primary-light transition-colors">
-                <Bell className="text-gray-700 dark:text-gray-200" size={20} />
+              <Link to="/notifications" className="relative p-2 rounded-full hover:bg-[#0e2540] transition-colors">
+                <Bell className="text-gray-200" size={20} />
                 <span className="absolute top-1 right-1 bg-cta w-2 h-2 rounded-full"></span>
               </Link>
               <Link 
-                to={user.role === "Recruiter" ? "/recruiter-dashboard" : "/jobseeker-dashboard"} 
-                className="bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-md transition-colors"
+                to={dashboardPath}
+                className="bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-md"
               >
                 Dashboard
               </Link>
             </>
           ) : (
             <>
-              <Link to="/login" className="text-gray-700 dark:text-gray-200 hover:text-accent dark:hover:text-accent transition-colors">Login</Link>
-              <Link to="/register" className="bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-md transition-colors">Register</Link>
+              <Link to="/login" className="text-gray-200 hover:text-white px-3 py-2">Login</Link>
+              <Link to="/register" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Register</Link>
             </>
           )}
         </div>
@@ -58,32 +61,32 @@ const Navbar = () => {
         <div className="md:hidden flex items-center gap-3">
           <ThemeToggle />
           <button className="p-1" onClick={() => setOpen(!open)}>
-            {open ? <X size={24} className="text-gray-700 dark:text-white"/> : <Menu size={24} className="text-gray-700 dark:text-white"/>}
+            {open ? <X size={24} className="text-white"/> : <Menu size={24} className="text-white"/>}
           </button>
         </div>
       </div>
 
       {open && (
-        <div className="md:hidden flex flex-col px-4 pb-4 space-y-3 bg-white dark:bg-primary-light animate-fade-in">
+        <div className="md:hidden flex flex-col px-4 pb-4 space-y-3 bg-[#071026] animate-fade-in">
           <div className="relative my-2">
             <input
               type="text"
               placeholder="Search jobs..."
-              className="w-full py-2 pl-8 pr-4 rounded-md bg-gray-100 dark:bg-primary text-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-accent"
+              className="w-full py-2 pl-8 pr-4 rounded-md bg-[#0b2036] text-gray-200 text-sm focus:outline-none focus:ring-1 focus:ring-accent"
             />
             <div className="absolute left-2 top-2.5 text-gray-400">
-              <Search className="h-4 w-4" />
+              <Search className="h-4 w-4 text-gray-300" />
             </div>
           </div>
           
-          <Link to="/jobs" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-200 hover:text-accent dark:hover:text-accent transition-colors py-1">Jobs</Link>
-          <Link to="/companies" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-200 hover:text-accent dark:hover:text-accent transition-colors py-1">Companies</Link>
+          <Link to="/jobs" onClick={() => setOpen(false)} className="text-gray-200 hover:text-accent transition-colors py-1">Jobs</Link>
+          <Link to="/companies" onClick={() => setOpen(false)} className="text-gray-200 hover:text-accent transition-colors py-1">Companies</Link>
           
           {user ? (
             <>
-              <Link to="/notifications" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-200 hover:text-accent dark:hover:text-accent transition-colors py-1">Notifications</Link>
+              <Link to="/notifications" onClick={() => setOpen(false)} className="text-gray-200 hover:text-accent transition-colors py-1">Notifications</Link>
               <Link 
-                to={user.role === "Recruiter" ? "/recruiter-dashboard" : "/jobseeker-dashboard"} 
+                to={dashboardPath}
                 onClick={() => setOpen(false)}
                 className="bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-md transition-colors inline-block"
               >
@@ -92,8 +95,8 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to="/login" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-200 hover:text-accent dark:hover:text-accent transition-colors py-1">Login</Link>
-              <Link to="/register" onClick={() => setOpen(false)} className="bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-md transition-colors inline-block">Register</Link>
+              <Link to="/login" onClick={() => setOpen(false)} className="text-gray-200 hover:text-accent transition-colors py-1">Login</Link>
+              <Link to="/register" onClick={() => setOpen(false)} className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors inline-block">Register</Link>
             </>
           )}
         </div>

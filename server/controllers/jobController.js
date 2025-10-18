@@ -33,7 +33,33 @@ export const createJob = async (req, res) => {
 // @access Public
 export const getJobs = async (req, res) => {
   try {
-    const jobs = await Job.find().populate("createdBy", "name email role");
+    // default limit
+    const maxLimit = 20;
+    let limit = parseInt(req.query.limit, 10) || maxLimit;
+    if (limit > maxLimit) limit = maxLimit;
+
+    // server-side search: support ?q=term
+    const { q } = req.query;
+    let filter = {};
+    if (q && q.trim().length > 0) {
+      const term = q.trim();
+      filter = {
+        $or: [
+          { title: { $regex: term, $options: 'i' } },
+          { company: { $regex: term, $options: 'i' } },
+          { location: { $regex: term, $options: 'i' } },
+          { description: { $regex: term, $options: 'i' } },
+          { skillsRequired: { $elemMatch: { $regex: term, $options: 'i' } } },
+        ],
+      };
+    }
+
+    // return newest jobs first, limited to `limit`
+    const jobs = await Job.find(filter)
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .populate("createdBy", "name email role");
+
     res.status(200).json(jobs);
   } catch (error) {
     res.status(500).json({ message: error.message });
